@@ -2,11 +2,17 @@ __author__ = 'sdhillon'
 import requests
 
 from pprint import pprint
+
+import logging
+
+logger = logging.getLogger(__name__)
+
 class Okta(object):
   def __init__(self, token):
     self.token = token
     self.headers = {'Authorization': 'SSWS {0}'.format(token), 'Accept': 'application/json'}
   def get_group(self, q = None):
+    logger.debug('fetching okta groups, with query: %s', q)
     URL = 'https://xactly.okta.com/api/v1/groups'
     if q:
       response = self.get_link(URL, params = {'q': q})
@@ -38,7 +44,6 @@ class OktaUser(object):
   def __init__(self, okta, user):
     self.okta = okta
     self.user = user
-
   def json(self):
     return self.user
   @property

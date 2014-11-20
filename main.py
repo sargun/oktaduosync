@@ -13,7 +13,6 @@ if __name__ == '__main__':
   config = toml.load('config.toml')
   baseConfig = {'version': 1}
   baseConfig.update(config['logging'])
-  pprint(baseConfig)
   logging.config.dictConfig(baseConfig)
   oktaduosync.OktaDuoSync(config).sync()
 

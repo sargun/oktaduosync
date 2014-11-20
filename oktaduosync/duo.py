@@ -1,6 +1,5 @@
 import duo_client
 
-
 class Duo(object):
   def __init__(self, config):
     self.duo = duo_client.Admin(config['integration_key'], config['secret_key'], config['hostname'])
